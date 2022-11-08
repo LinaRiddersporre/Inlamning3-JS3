@@ -1,38 +1,42 @@
 import { useState } from "react"
 import firebase from 'firebase/app';
-
-// import database from "../firebase/firebase";
+import 'firebase/database'
+import configuration from "../firebase/firebaseconfig";
 
 
 const SignUp = () => {
-    // const [userName, setUserName] = useState();
-    // const Push = () => {
-    //     database.ref(url).set({
-    //         userName : userName
-    //     }).catch(console.log('det gick inte'))
-    // }
-    
-    const {url} = 'https://movies-and-inlog-js3-default-rtdb.firebaseio.com/inlogg.json'
+    if(!firebase.apps.length){
+        firebase.initializeApp(configuration());
+    }
+    const database = firebase.database()
+    const databaseRef = firebase.database().ref()
 
-    fetch(url)
-    .then(response => response)
-    .then(data => {
-        console.log('nehe', data)
-        console.log(firebase.database())
-    })
-
-    const newName = {
-        userName: '',
-        password: ''
+    const exist = (userName, password) => {
+        databaseRef.child('users').child(userName).get().then((snapshot) => {
+            if (snapshot.exists()) {
+              console.log('Finns redan');
+            } else {
+              console.log("Ny inloggning skapad");
+              saveData(userName, password)
+            }
+          }).catch((error) => {
+            console.error(error);
+          });
     }
 
+    
+    
     const submitForm = (e) => {
         e.preventDefault()
-        newName.userName = e.target.children[0].value
-        newName.password = e.target.children[1].value
-       console.log(newName)
+        exist(e.target.children[0].value, e.target.children[1].value)
     }
     
+    function saveData(userName, password){
+        database.ref('users/' + userName).set({
+            userName : userName,
+            password : password
+        })
+    }
  
     return(
         <div>
