@@ -6,13 +6,16 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Login from './components/login/login';
 import SignUp from './components/signUp/signUp';
 import AddMovie from './components/addMovie/addMovie';
+import Movies from './components/movies/movies';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Login/>}/>
+        <Route path='/' element={<Movies/>}/>
+        <Route path='movies' element={<Movies/>}/>
+        <Route path='logIn' element={<Login/>}/>
         <Route path='signUp' element={<SignUp/>}/>
         <Route path='app' element={<App/>}/>
         <Route path='addMovie' element={<AddMovie/>}/>

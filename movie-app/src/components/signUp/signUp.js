@@ -1,4 +1,3 @@
-import { useState } from "react"
 import firebase from 'firebase/app';
 import 'firebase/database'
 import configuration from "../firebase/firebaseconfig";
@@ -23,8 +22,6 @@ const SignUp = () => {
             console.error(error);
           });
     }
-
-    
     
     const submitForm = (e) => {
         e.preventDefault()
