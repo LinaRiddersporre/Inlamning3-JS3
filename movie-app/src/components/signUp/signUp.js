@@ -25,7 +25,9 @@ const SignUp = () => {
     
     const submitForm = (e) => {
         e.preventDefault()
-        exist(e.target.children[0].value, e.target.children[1].value)
+        const userName = e.target.children[0].value
+        const password = e.target.children[1].value
+        exist(userName, password)
     }
     
     function saveData(userName, password){
