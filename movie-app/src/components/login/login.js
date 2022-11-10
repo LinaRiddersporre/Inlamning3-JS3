@@ -2,8 +2,15 @@ import React from "react";
 import firebase from 'firebase/app';
 import 'firebase/database'
 import configuration from "../firebase/firebaseconfig";
+import BasicModal from "../modal/modal";
+import Movies from "../movies/movies";
 
 class Login extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {errorMessage: ''}
+    }
+
     submitForm = (e) =>{
         e.preventDefault()
         const userName = e.target.children[0].value
@@ -21,16 +28,25 @@ class Login extends React.Component{
                     if(password === data.password){
                         console.log('inloggad')
                     }else{
-                        console.log('fel lösenord')
+                        this.setState({errorMessage: 'Fel lösenord'})
+                        console.log(this.state.errorMessage)
                     }
                 })
-                
-              } else {
-                console.log("finns inte");
-              }
-            }).catch((error) => {
+            } else { 
+                this.setState({errorMessage: 'Användaren finns inte'})
+                console.log(this.state.errorMessage)
+            }
+        }).catch((error) => {
               console.error(error);
         })
+    }
+
+    alert = () => {
+        return(
+            <div>
+                <BasicModal errorMessage={this.state.errorMessage}/>
+            </div>
+        )
     }
 
     render (){
@@ -39,6 +55,7 @@ class Login extends React.Component{
         }
         return(
             <div>
+                {this.alert()}
                 <form onSubmit={this.submitForm}>
                     <input type='text' placeholder='@gmail.com'></input>
                     <input type='password' placeholder='Lösenord'></input>

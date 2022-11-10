@@ -7,6 +7,7 @@ import Login from './components/login/login';
 import SignUp from './components/signUp/signUp';
 import AddMovie from './components/addMovie/addMovie';
 import Movies from './components/movies/movies';
+import BasicModal from './components/modal/modal';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
         <Route path='signUp' element={<SignUp/>}/>
         <Route path='app' element={<App/>}/>
         <Route path='addMovie' element={<AddMovie/>}/>
+        <Route path='basicModal' element={<BasicModal/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
