@@ -25,7 +25,7 @@ const Movies = () => {
 
     const goToMovie = (movieTitle, movie) => {
         if(true){
-            navigate(`${movieTitle}`, {state: movie})
+            navigate(`${movieTitle}`, {state : movie})
         }else{
             navigate('/')
         }
@@ -45,7 +45,9 @@ const Movies = () => {
                 <div key={index}> 
                     <NavLink 
                     onClick={() => goToMovie(movie.movieTitle, movie)} 
-                    to={`${movie.movieTitle}`}><h2>Filmtitel: {movie.movieTitle}</h2></NavLink>
+                    to={`/movies/:${movie.movieTitle}`}
+                    
+                    ><h2>Filmtitel: {movie.movieTitle}</h2></NavLink>
                     <img src={`${movie.moviePicture}`}/>
                     <p>{movie.shortMovieDescription}</p>
                 </div>
