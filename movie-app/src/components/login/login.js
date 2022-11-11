@@ -8,7 +8,8 @@ import Movies from "../movies/movies";
 class Login extends React.Component{
     constructor(props){
         super(props);
-        this.state = {errorMessage: ''}
+        this.state = {errorMessage : ''};
+        this.state = {openModal : false};
     }
 
     submitForm = (e) =>{
@@ -17,6 +18,7 @@ class Login extends React.Component{
         const password = e.target.children[1].value
         console.log(userName, password)
         this.loginCheck(userName, password)
+        
     }
 
     loginCheck = (userName, password) => {
@@ -29,12 +31,15 @@ class Login extends React.Component{
                         console.log('inloggad')
                     }else{
                         this.setState({errorMessage: 'Fel lösenord'})
+                        this.setState({openModal: true})
                         console.log(this.state.errorMessage)
                     }
                 })
             } else { 
                 this.setState({errorMessage: 'Användaren finns inte'})
+                this.setState({openModal: true})
                 console.log(this.state.errorMessage)
+
             }
         }).catch((error) => {
               console.error(error);
@@ -42,11 +47,23 @@ class Login extends React.Component{
     }
 
     alert = () => {
-        return(
+        if(this.state.openModal===true){
+            return(
             <div>
-                <BasicModal errorMessage={this.state.errorMessage}/>
-            </div>
+                {console.log(this.state.openModal)}
+                <BasicModal 
+                    errorMessage={this.state.errorMessage} 
+                    catchClose={this.catchClose}
+                    openModal={this.state.openModal}
+                />
+            </div>    
         )
+        }
+    }
+
+    catchClose = (boolean) => {
+        this.setState({openModal: boolean})
+        console.log(boolean)
     }
 
     render (){

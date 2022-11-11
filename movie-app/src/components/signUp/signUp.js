@@ -7,6 +7,8 @@ import BasicModal from '../modal/modal';
 
 const SignUp = (props) => {
     const [message, setMessage] = useState(props.errorMessage)
+    const [openModal, setOpenModal] = useState(false)
+    
     if(!firebase.apps.length){
         firebase.initializeApp(configuration());
     }
@@ -17,11 +19,13 @@ const SignUp = (props) => {
         databaseRef.child('users').child(userName).get().then((snapshot) => {
             if (snapshot.exists()) {
                 setMessage('Finns redan')
+                setOpenModal(true)
               console.log('Finns redan');
             } else {
-                setMessage('Kontot är skapat')
+              saveData(userName, password)  
               console.log("Ny inloggning skapad");
-              saveData(userName, password)
+              setMessage('Kontot är skapat')
+              setOpenModal(true)
             }
           }).catch((error) => {
             console.error(error);
@@ -36,11 +40,22 @@ const SignUp = (props) => {
     }
 
     const alert = () => {
+        if(openModal===true){
         return(
             <div>
-                <BasicModal errorMessage={message}/>
+                <BasicModal 
+                    errorMessage={message}
+                    catchClose={catchClose}
+                    openModal={openModal}    
+                />
             </div>
         )
+        }
+    }
+
+    const catchClose = (boolean) => {
+        setOpenModal(boolean)
+        console.log(boolean)
     }
     
     function saveData(userName, password){
