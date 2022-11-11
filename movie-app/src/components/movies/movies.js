@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/database'
 import configuration from '../firebase/firebaseconfig';
 import {useState} from 'react'
+import { NavLink } from 'react-router-dom';
 
 const Movies = () => {
     const [arrayOfMovies, setArrayOfMovies] = useState([])
@@ -17,7 +18,6 @@ const Movies = () => {
         movieRef.once('value', (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 let childData = childSnapshot.val()
-                console.log(childData)
                 setArrayOfMovies(arrayOfMovies => [...arrayOfMovies, childData])
             })
         })
@@ -28,13 +28,15 @@ const Movies = () => {
         getMoviesFromDatabase();
     }
 
+
+
     // Loopa igenom listan med filmer och returnera som element
     const showMovie = () => {
         return(
         arrayOfMovies.map((movie, index) => {
             return (
                 <div key={index}> 
-                    <h2>Filmtitel: {movie.movieTitle}</h2>
+                    <NavLink to={`movies:${movie.movieTitle}`}><h2>Filmtitel: {movie.movieTitle}</h2></NavLink>
                     <img src={`${movie.moviePicture}`}/>
                     <p>{movie.shortMovieDescription}</p>
                 </div>
