@@ -2,11 +2,11 @@ import firebase from 'firebase/app';
 import 'firebase/database'
 import configuration from '../firebase/firebaseconfig';
 import {useState} from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Movies = () => {
     const [arrayOfMovies, setArrayOfMovies] = useState([])
-
+    const navigate = useNavigate()
     
     
     if(!firebase.apps.length){
@@ -22,13 +22,20 @@ const Movies = () => {
             })
         })
     }
+
+    const goToMovie = (movieTitle, movie) => {
+        if(true){
+            navigate(`${movieTitle}`, {state: movie})
+        }else{
+            navigate('/')
+        }
+       
+    }
     
     // För att den bara skall hämta arrayn en gång, kanske får göras om sen när den skall uppdateras dynamiskt?
     if(!arrayOfMovies.length > 0){
         getMoviesFromDatabase();
     }
-
-
 
     // Loopa igenom listan med filmer och returnera som element
     const showMovie = () => {
@@ -36,7 +43,9 @@ const Movies = () => {
         arrayOfMovies.map((movie, index) => {
             return (
                 <div key={index}> 
-                    <NavLink to={`movies:${movie.movieTitle}`}><h2>Filmtitel: {movie.movieTitle}</h2></NavLink>
+                    <NavLink 
+                    onClick={() => goToMovie(movie.movieTitle, movie)} 
+                    to={`${movie.movieTitle}`}><h2>Filmtitel: {movie.movieTitle}</h2></NavLink>
                     <img src={`${movie.moviePicture}`}/>
                     <p>{movie.shortMovieDescription}</p>
                 </div>

@@ -7,6 +7,7 @@ import SignUp from './components/signUp/signUp';
 import AddMovie from './components/addMovie/addMovie';
 import Movies from './components/movies/movies';
 import Layout from './components/layout/layout';
+import MovieInformation from './components/movieInformation/movieInformation';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
           <Route path='logIn' element={<Login/>}/>
           <Route path='signUp' element={<SignUp/>}/>
           <Route path='addMovie' element={<AddMovie/>}/>
+          <Route path='/movies/:id' element={<MovieInformation/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
