@@ -20,7 +20,7 @@ root.render(
           <Route path='logIn' element={<Login/>}/>
           <Route path='signUp' element={<SignUp/>}/>
           <Route path='addMovie' element={<AddMovie/>}/>
-          <Route path='/movies/:id' element={<MovieInformation/>}/>
+          <Route exact path='/movies/:id' element={<MovieInformation/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

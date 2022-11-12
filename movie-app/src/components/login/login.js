@@ -3,7 +3,6 @@ import firebase from 'firebase/app';
 import 'firebase/database'
 import configuration from "../firebase/firebaseconfig";
 import BasicModal from "../modal/modal";
-import Movies from "../movies/movies";
 
 class Login extends React.Component{
     constructor(props){
