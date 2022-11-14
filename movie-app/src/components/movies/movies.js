@@ -12,9 +12,10 @@ const Movies = () => {
         firebase.initializeApp(configuration());
     }
 
+    const movieRef = firebase.database()
+
     const getMoviesFromDatabase = () => {
-        const movieRef = firebase.database().ref('movies/')
-        movieRef.once('value', (snapshot) => {
+        movieRef.ref('movies/').once('value', (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 let childData = childSnapshot.val()
                 setArrayOfMovies(arrayOfMovies => [...arrayOfMovies, childData])
@@ -28,6 +29,17 @@ const Movies = () => {
         getMoviesFromDatabase();
     }
 
+    
+
+    const deleteMovieButton = (creator) => {
+        const id = localStorage.getItem('id')
+        if(id===creator){
+            return(
+                <button type='submit'>Ta bort</button>
+            )
+        }
+    }
+
     // Loopa igenom listan med filmer och returnera som element
     const showMovie = () => {
         return(
@@ -39,6 +51,7 @@ const Movies = () => {
                     ><h2>Filmtitel: {movie.movieTitle}</h2></NavLink>
                     <img src={`${movie.moviePicture}`}/>
                     <p>{movie.shortMovieDescription}</p>
+                    {deleteMovieButton(movie.creator, movie.movieTitle)}
                 </div>
             )
         }))

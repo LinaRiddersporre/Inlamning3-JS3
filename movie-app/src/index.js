@@ -8,6 +8,7 @@ import AddMovie from './components/addMovie/addMovie';
 import Movies from './components/movies/movies';
 import Layout from './components/layout/layout';
 import MovieInformation from './components/movieInformation/movieInformation';
+import ErrorPage from './components/error/error';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +22,7 @@ root.render(
           <Route path='signUp' element={<SignUp/>}/>
           <Route path='addMovie' element={<AddMovie/>}/>
           <Route exact path='/movies/:id' element={<MovieInformation/>}/>
+          <Route path='*' element={<ErrorPage/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
