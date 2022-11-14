@@ -1,0 +1,18 @@
+.navbarBody{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #231717;
+    height: 4rem;
+    align-items: center;
+}
+
+.navbarBody li{
+    list-style-type: none;
+    
+    font-weight: bolder;
+    
+}
+
+.navbarBody li a{
+    color: white;
+}

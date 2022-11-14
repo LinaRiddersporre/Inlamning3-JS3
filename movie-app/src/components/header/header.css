@@ -1,0 +1,13 @@
+.body{
+    background-color: #171717;
+}
+
+.header{
+    max-height: 15rem;
+    display: flex;
+    justify-content: center;
+}
+
+.header img{
+    max-width: 100%;
+}
