@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import './_modal.css'
+import { NavLink } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -22,7 +23,6 @@ function BasicModal(props) {
     props.catchClose(false)
   } 
 
-
   return (
     <div>
         <Modal
@@ -33,6 +33,12 @@ function BasicModal(props) {
           <Box sx={style}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                   {props.errorMessage}
+                  <br/>
+                  <NavLink to={`/login`}>Logga in</NavLink>
+                  <br/>
+                  <NavLink to={`/signUp`}>Skapa nytt konto</NavLink>
+                  <br/>
+                  <NavLink to={`/movies`}>Gå till filmlistan</NavLink>
               </Typography>
               
           </Box>

@@ -3,6 +3,9 @@ import firebase from 'firebase/app';
 import 'firebase/database'
 import configuration from "../firebase/firebaseconfig";
 import BasicModal from "../modal/modal";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import Movies from "../movies/movies";
+import { Switch } from "@mui/material";
 
 class Login extends React.Component{
     constructor(props){
@@ -17,7 +20,6 @@ class Login extends React.Component{
         const password = e.target.children[1].value
         console.log(userName, password)
         this.loginCheck(userName, password)
-        
     }
 
     loginCheck = (userName, password) => {
@@ -27,6 +29,10 @@ class Login extends React.Component{
                     const data = snapshot.val()
                     console.log(data.password)
                     if(password === data.password){
+                        this.setState({errorMessage: 'Inloggad'})
+                        this.setState({openModal: true})
+                        localStorage.setItem('id', `${userName}`)
+                        
                         console.log('inloggad')
                     }else{
                         this.setState({errorMessage: 'Fel lösenord'})
@@ -59,6 +65,7 @@ class Login extends React.Component{
         )
         }
     }
+
 
     catchClose = (boolean) => {
         this.setState({openModal: boolean})
