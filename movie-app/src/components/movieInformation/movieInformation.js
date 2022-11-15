@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { useParams, useLocation } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import firebase from 'firebase/app';
 import 'firebase/database'
 
-const MovieInformation = (props) => {
+const MovieInformation = () => {
     const [movie, setMovie] = useState('')
 
    let {id} = useParams()

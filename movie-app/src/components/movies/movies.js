@@ -14,36 +14,38 @@ const Movies = () => {
 
     const movieRef = firebase.database()
 
-    const getMoviesFromDatabase = () => {
+    function getMoviesFromDatabase(){
+        
         movieRef.ref('movies/').once('value', (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 let childData = childSnapshot.val()
                 setArrayOfMovies(arrayOfMovies => [...arrayOfMovies, childData])
+                
             })
         })
     }
 
-    
-    // För att den bara skall hämta arrayn en gång, kanske får göras om sen när den skall uppdateras dynamiskt?
     if(!arrayOfMovies.length > 0){
+        
         getMoviesFromDatabase();
+        console.log(arrayOfMovies, 'arrayOfMovies')
     }
 
+    // inte bästa sättet, får klura på annat sätt
+    function handleRemove(key, movie) {
+        arrayOfMovies.splice(key, 1)
+        setArrayOfMovies(arrayOfMovies => [...arrayOfMovies])
+        console.log(movie)
+        movieRef.ref('movies/').child(movie).remove()
+        console.log(arrayOfMovies)
+    }
     
 
-    const deleteMovieButton = (creator) => {
-        const id = localStorage.getItem('id')
-        if(id===creator){
-            return(
-                <button type='submit'>Ta bort</button>
-            )
-        }
-    }
-
-    // Loopa igenom listan med filmer och returnera som element
-    const showMovie = () => {
-        return(
-        arrayOfMovies.map((movie, index) => {
+    return(
+        <div>
+            <h1>Filmtoppen</h1>
+            <div>
+            {arrayOfMovies.map((movie, index) => {
             return (
                 <div key={index}> 
                     <NavLink 
@@ -51,17 +53,10 @@ const Movies = () => {
                     ><h2>Filmtitel: {movie.movieTitle}</h2></NavLink>
                     <img src={`${movie.moviePicture}`}/>
                     <p>{movie.shortMovieDescription}</p>
-                    {deleteMovieButton(movie.creator, movie.movieTitle)}
+                    {localStorage.getItem('id')===movie.creator ? <button onClick={() =>{handleRemove(index, movie.movieTitle)}}>Ta bort</button> : null}
                 </div>
             )
-        }))
-    }
-
-    return(
-        <div>
-            <h1>Filmtoppen</h1>
-            <div>
-                {showMovie()}
+        })}
             </div>
         </div>
     )
