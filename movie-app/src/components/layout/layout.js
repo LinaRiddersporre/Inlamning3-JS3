@@ -1,20 +1,20 @@
 import { Hidden } from "@mui/material";
 import { color, display } from "@mui/system";
-import { NavLink, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import './_layout.css'
 
 const Layout = () => {
-    const storageId = localStorage.getItem('id')
-    
-    const hidden = {
-        visibility: 'hidden'
-    }
-
-    const visible = {
-        visibility: 'visible'
-    }
+    const location = useLocation()
+    const [addMovieLink, setAddMovieLink] = useState()
+    // const storageId = localStorage.getItem('id')
+    useEffect(() => {
+        if (location.state !== null) {
+            console.log('ja', location.state)
+        } 
+    })
 
     
     return(
@@ -26,7 +26,9 @@ const Layout = () => {
                 <li><NavLink to={'movies'}>Filmlistan</NavLink></li>
                 <li><NavLink 
                 to={'addMovie'}
-                style={(!storageId) ? hidden : visible}
+                state = {{weAreIn: 'weAreIn'}}
+                style= { (!localStorage.getItem('id')) ? {visibility: 'hidden'} : {visibility: 'visible'}}
+                
                 >Lägg till film</NavLink></li>
             </nav>
             <Outlet></Outlet>

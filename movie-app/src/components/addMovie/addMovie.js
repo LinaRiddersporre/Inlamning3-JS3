@@ -1,8 +1,18 @@
 import firebase from 'firebase/app';
 import 'firebase/database'
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import configuration from '../firebase/firebaseconfig';
 
 const AddMovie = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (location.state === null) {
+            navigate("/")
+        }
+    })
 
     if(!firebase.apps.length){
         firebase.initializeApp(configuration())
@@ -28,9 +38,15 @@ const AddMovie = () => {
         const movieTitle = e.target.children[0].value;
         const shortMovieDescription = e.target.children[1].value;
         const longMovieDescrition = e.target.children[2].value;
-        const moviePicture = e.target.children[3].value;
+        let moviePicture = e.target.children[3].value;
+        if(moviePicture === ''){
+            moviePicture = 'https://lajoyalink.com/wp-content/uploads/2018/03/Movie.jpg'
+        }
+        // () ? moviePicture=== : null
+            
         const creator = storage
 
+        console.log(moviePicture)
         addMovie(movieTitle, shortMovieDescription, longMovieDescrition, moviePicture, creator);
         
     }
@@ -42,7 +58,7 @@ const AddMovie = () => {
                 <input type='text' placeholder='Filmtitel' required></input>
                 <input type='text' placeholder='Kort beskrivning' required></input>
                 <input type='text' placeholder='Lång beskrivning' required></input>
-                <input type='file' placeholder='bild' required></input>
+                <input type='text' placeholder='Alternativ url till bild' ></input>
                 <input type='submit' value='Lägg till film' required></input>
             </form>
         </div>

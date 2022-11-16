@@ -33,12 +33,17 @@ function BasicModal(props) {
           <Box sx={style}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                   {props.errorMessage}
+                  {(props.errorMessage === 'Inloggad') ? <NavLink to={`/movies`}
+                  state={{weAreIn: 'weAreIn'}}
+                  ><br/>Gå till filmlistan</NavLink> :
+                  <div>
                   <br/>
                   <NavLink to={`/login`}>Logga in</NavLink>
                   <br/>
                   <NavLink to={`/signUp`}>Skapa nytt konto</NavLink>
-                  <br/>
-                  <NavLink to={`/movies`}>Gå till filmlistan</NavLink>
+                  
+                  </div>
+                  }
               </Typography>
               
           </Box>
