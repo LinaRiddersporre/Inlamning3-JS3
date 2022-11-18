@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import configuration from '../firebase/firebaseconfig';
 
+
 const AddMovie = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -40,7 +41,7 @@ const AddMovie = () => {
         const longMovieDescrition = e.target.children[2].value;
         let moviePicture = e.target.children[3].value;
         if(moviePicture === ''){
-            moviePicture = 'https://lajoyalink.com/wp-content/uploads/2018/03/Movie.jpg'
+            moviePicture = 'https://media.gettyimages.com/id/1244034031/vector/cinema-poster-with-cola-film-strip-and-clapper-vector.jpg?s=612x612&w=gi&k=20&c=8ClshQC50T-wPj6CPvnPnFq1Er6Fs8fbrreXWehvdgk='
         }
         // () ? moviePicture=== : null
             

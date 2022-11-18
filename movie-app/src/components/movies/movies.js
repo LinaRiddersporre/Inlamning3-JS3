@@ -45,18 +45,25 @@ const Movies = () => {
     
 
     return(
-        <div>
-            <h1>Filmtoppen</h1>
-            <div>
+        <div className='pageBody'>
+            <div className='title'><h1>Filmtoppen</h1></div>
+            
+            <div className='cardBody'>
             {arrayOfMovies.map((movie, index) => {
             return (
-                <div key={index}> 
+                <div key={index} className='card'> 
                     <NavLink 
                     to={`/movies/${movie.movieTitle}`}
-                    ><h2>Filmtitel: {movie.movieTitle}</h2></NavLink>
-                    <img src={`${movie.moviePicture}`}/>
-                    <p>{movie.shortMovieDescription}</p>
-                    {localStorage.getItem('id')===movie.creator ? <button onClick={() =>{handleRemove(index, movie.movieTitle)}}>Ta bort</button> : null}
+                    className='innerBox'
+                    ><img src={`${movie.moviePicture}`}/>
+                    <div className='movieInformaton'>
+                        <h2>{movie.movieTitle}</h2>
+                        <p>{movie.shortMovieDescription}</p>
+                    </div>
+                    </NavLink>
+                    <span className='removeButton'>
+                        {localStorage.getItem('id')===movie.creator ? <button  onClick={() =>{handleRemove(index, movie.movieTitle)}}>Ta bort</button> : null}
+                    </span>
                 </div>
             )
         })}

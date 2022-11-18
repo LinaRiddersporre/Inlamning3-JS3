@@ -1,18 +1,18 @@
 .navbarBody{
     display: flex;
     justify-content: space-evenly;
-    background-color: #231717;
+    background-color: #203c74;
     height: 4rem;
     align-items: center;
 }
 
 .navbarBody li{
     list-style-type: none;
-    
-    font-weight: bolder;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     
 }
 
 .navbarBody li a{
     color: white;
+    font-size: larger;
 }

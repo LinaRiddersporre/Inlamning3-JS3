@@ -9,27 +9,39 @@ import './_layout.css'
 const Layout = () => {
     const location = useLocation()
     const [addMovieLink, setAddMovieLink] = useState()
-    // const storageId = localStorage.getItem('id')
+    const storageId = localStorage.getItem('id')
     useEffect(() => {
         if (location.state !== null) {
             console.log('ja', location.state)
         } 
     })
 
+    const emptyLocalStorage = () => {
+        localStorage.clear();
+    }
+
     
     return(
         <div>
             <Header/>
-            <nav className="navbarBody">
-                <li><NavLink to={'login'}>Logga in</NavLink></li>
-                <li><NavLink to={'signUp'}>Registrera</NavLink></li>
+            <nav>
+            
+            {(storageId) ? 
+            <div className="navbarBody"> 
+                <h1>Hej {storageId}</h1> 
                 <li><NavLink to={'movies'}>Filmlistan</NavLink></li>
                 <li><NavLink 
                 to={'addMovie'}
                 state = {{weAreIn: 'weAreIn'}}
-                style= { (!localStorage.getItem('id')) ? {visibility: 'hidden'} : {visibility: 'visible'}}
-                
                 >Lägg till film</NavLink></li>
+                <li><NavLink to={'login'} onClick={() => {emptyLocalStorage()}}>Logga ut</NavLink></li> 
+                
+            </div> :
+            <div className="navbarBody">
+                <li><NavLink to={'login'}>Logga in</NavLink></li>
+                <li><NavLink to={'signUp'}>Registrera</NavLink></li>
+                <li><NavLink to={'movies'}>Filmlistan</NavLink></li>
+            </div>}
             </nav>
             <Outlet></Outlet>
             <Footer/>
