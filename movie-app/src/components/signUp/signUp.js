@@ -12,11 +12,9 @@ const SignUp = (props) => {
     if(!firebase.apps.length){
         firebase.initializeApp(configuration());
     }
-    const database = firebase.database()
-    const databaseRef = firebase.database().ref()
 
     const exist = (userName, password) => {
-        databaseRef.child('users').orderByChild('userName').equalTo(userName).once('value', snapshot => {
+        firebase.database().ref().child('users').orderByChild('userName').equalTo(userName).once('value', snapshot => {
             if(!snapshot.exists()){
                 console.log("Ny inloggning skapad");
                 setMessage('Kontot är skapat')
@@ -38,25 +36,24 @@ const SignUp = (props) => {
 
     const alert = () => {
         if(openModal===true){
-        return(
-            <div>
-                <BasicModal 
-                    errorMessage={message}
-                    catchClose={catchClose}
-                    openModal={openModal}    
-                />
-            </div>
-        )
+            return(
+                <div>
+                    <BasicModal 
+                        errorMessage={message}
+                        catchClose={catchClose}
+                        openModal={openModal}    
+                    />
+                </div>
+            )
         }
     }
 
     const catchClose = (boolean) => {
         setOpenModal(boolean)
-        console.log(boolean)
     }
     
     function saveData(userName, password){
-        database.ref('users/').push({
+        firebase.database().ref('users/').push({
             userName : userName,
             password : password
         })
@@ -69,7 +66,7 @@ const SignUp = (props) => {
                 <h1>Skapa konto</h1>
                 <input type='email' placeholder='@example.com' className='mailInput' required></input>
                 <input type='password' placeholder='Lösenord' className='passwordInput' required></input>
-                <input type='submit' value='Skapa konto' ></input>
+                <input type='submit' value='Skapa konto'></input>
             </form>
         </div>
     )

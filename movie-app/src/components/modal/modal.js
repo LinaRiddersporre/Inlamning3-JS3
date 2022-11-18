@@ -24,29 +24,27 @@ function BasicModal(props) {
 
   return (
     <div>
-        <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-        >
-          <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                  {props.errorMessage}
-                  {(props.errorMessage === 'Inloggad' || props.errorMessage === 'Filmen är skapad') ? <NavLink to={`/movies`}
-                  state={{weAreIn: 'weAreIn'}}
-                  ><br/>Gå till filmlistan</NavLink> :
-                  <div>
-                  <br/>
-                  <NavLink to={`/login`}>Logga in</NavLink>
-                  <br/>
-                  <NavLink to={`/signUp`}>Skapa nytt konto</NavLink>
-                  
-                  </div>
-                  }
-              </Typography>
-              
-          </Box>
-        </Modal>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+              {props.errorMessage}
+              {(props.errorMessage === 'Inloggad' || props.errorMessage === 'Filmen är skapad') ? <NavLink to={`/movies`}
+              state={{weAreIn: 'weAreIn'}}
+              ><br/>Gå till filmlistan</NavLink> :
+              <div>
+                <br/>
+                <NavLink to={`/login`}>Logga in</NavLink>
+                <br/>
+                <NavLink to={`/signUp`}>Skapa nytt konto</NavLink>
+              </div>
+              }
+          </Typography>
+        </Box>
+      </Modal>
     </div>
   );
 }

@@ -6,35 +6,28 @@ import './_movieInformation.css'
 
 const MovieInformation = () => {
     const [movie, setMovie] = useState('')
-
-   let {id} = useParams()
-
-   const getTheMovie = () => {
-    const movieRef = firebase.database().ref(`movies/` + id)
-    movieRef.on('value', (snapshot) => {
-        let childData = snapshot.val()
-        console.log(childData)
-        setMovie(childData)
-        
-    })
-   }
+    let {id} = useParams()
+    const getTheMovie = () => {
+        firebase.database().ref(`movies/` + id).on('value', (snapshot) => {
+        setMovie(snapshot.val())
+        })
+    }
 
     if(movie === ''){
         getTheMovie()
     }
 
-   const showTheMovie = () => {
-    return(
-         <div className="movieInformation"> 
-            <img src={`${movie.moviePicture}`}/>
-            <div className="innerDiv">
-                <h2>{movie.movieTitle}</h2>
-                <p>{movie.longMovieDescrition}</p>
+    const showTheMovie = () => {
+        return(
+            <div className="movieInformation"> 
+                <img src={`${movie.moviePicture}`}/>
+                <div className="innerDiv">
+                    <h2>{movie.movieTitle}</h2>
+                    <p>{movie.longMovieDescrition}</p>
+                </div>
             </div>
-        </div>
-    )
-   
-   }
+        )
+    }
     
     return(
         <div>

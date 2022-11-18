@@ -44,18 +44,17 @@ class Login extends React.Component{
     alert = () => {
         if(this.state.openModal===true){
             return(
-            <div>
-                {console.log(this.state.openModal)}
-                <BasicModal 
-                    errorMessage={this.state.errorMessage} 
-                    catchClose={this.catchClose}
-                    openModal={this.state.openModal}
-                />
-            </div>    
-        )
+                <div>
+                    {console.log(this.state.openModal)}
+                    <BasicModal 
+                        errorMessage={this.state.errorMessage} 
+                        catchClose={this.catchClose}
+                        openModal={this.state.openModal}
+                    />
+                </div>    
+            )
         }
     }
-
 
     catchClose = (boolean) => {
         this.setState({openModal: boolean})

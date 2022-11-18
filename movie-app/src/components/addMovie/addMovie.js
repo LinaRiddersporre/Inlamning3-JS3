@@ -6,13 +6,11 @@ import configuration from '../firebase/firebaseconfig';
 import BasicModal from '../modal/modal';
 import './_addMovie.css'
 
-
 const AddMovie = (props) => {
     const [message, setMessage] = useState(props.errorMessage)
     const [openModal, setOpenModal] = useState(false)
     const location = useLocation();
     const navigate = useNavigate();
-
     useEffect(() => {
         if (location.state === null) {
             navigate("/")
@@ -23,10 +21,8 @@ const AddMovie = (props) => {
         firebase.initializeApp(configuration())
     }
 
-    const database = firebase.database()
-
     function addMovie(movieTitle, shortMovieDescription, longMovieDescrition, moviePicture, creator){
-        database.ref('movies/' + movieTitle).set({
+        firebase.database().ref('movies/' + movieTitle).set({
             movieTitle : movieTitle, 
             shortMovieDescription : shortMovieDescription, 
             longMovieDescrition : longMovieDescrition, 
@@ -36,7 +32,6 @@ const AddMovie = (props) => {
     }
 
     const storage = localStorage.getItem('id')
-    
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -47,27 +42,24 @@ const AddMovie = (props) => {
         if(moviePicture === ''){
             moviePicture = 'https://media.gettyimages.com/id/1244034031/vector/cinema-poster-with-cola-film-strip-and-clapper-vector.jpg?s=612x612&w=gi&k=20&c=8ClshQC50T-wPj6CPvnPnFq1Er6Fs8fbrreXWehvdgk='
         }
-            
         const creator = storage
-
         console.log(moviePicture)
         addMovie(movieTitle, shortMovieDescription, longMovieDescrition, moviePicture, creator);
         setMessage('Filmen är skapad')
         setOpenModal(true)
-        
     }
 
     const alert = () => {
         if(openModal===true){
-        return(
-            <div>
-                <BasicModal 
-                    errorMessage={message}
-                    catchClose={catchClose}
-                    openModal={openModal}    
-                />
-            </div>
-        )
+            return(
+                <div>
+                    <BasicModal 
+                        errorMessage={message}
+                        catchClose={catchClose}
+                        openModal={openModal}    
+                    />
+                </div>
+            )
         }
     }
 
@@ -75,7 +67,6 @@ const AddMovie = (props) => {
         setOpenModal(boolean)
         console.log(boolean)
     }
- 
 
     return(
         <div>
