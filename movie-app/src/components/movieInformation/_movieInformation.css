@@ -1,0 +1,20 @@
+.movieInformation{
+    padding: 1rem 3rem;
+    display: flex;
+}
+
+.movieInformation img{
+    height: 40rem;
+    width: 24rem;
+    border: solid black 1px;
+}
+
+.movieInformation h2{
+    font-size: 250%;
+}
+
+.innerDiv{
+    padding-left: 3rem;
+}
+
+

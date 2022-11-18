@@ -3,7 +3,7 @@ import 'firebase/database'
 import configuration from '../firebase/firebaseconfig';
 import {useState} from 'react'
 import { NavLink } from 'react-router-dom';
-import './_movie.css'
+import './_movies.css'
 
 const Movies = () => {
     const [arrayOfMovies, setArrayOfMovies] = useState([])

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useParams } from "react-router-dom"
 import firebase from 'firebase/app';
 import 'firebase/database'
+import './_movieInformation.css'
 
 const MovieInformation = () => {
     const [movie, setMovie] = useState('')
@@ -24,11 +25,13 @@ const MovieInformation = () => {
 
    const showTheMovie = () => {
     return(
-         <div> 
-        <h2>Filmtitel: {movie.movieTitle}</h2>
-        <img src={`${movie.moviePicture}`}/>
-        <p>{movie.longMovieDescrition}</p>
-    </div>
+         <div className="movieInformation"> 
+            <img src={`${movie.moviePicture}`}/>
+            <div className="innerDiv">
+                <h2>{movie.movieTitle}</h2>
+                <p>{movie.longMovieDescrition}</p>
+            </div>
+        </div>
     )
    
    }
