@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.navbarBody h1{
+    color: white;
+}
+
 .navbarBody li{
     list-style-type: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;

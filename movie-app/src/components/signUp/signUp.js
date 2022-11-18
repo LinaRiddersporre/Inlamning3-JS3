@@ -34,8 +34,8 @@ const SignUp = (props) => {
     
     const submitForm = (e) => {
         e.preventDefault()
-        const userName = e.target.children[0].value
-        const password = e.target.children[1].value
+        const userName = e.target.children[1].value
+        const password = e.target.children[2].value
         exist(userName, password)
     }
 
@@ -66,11 +66,12 @@ const SignUp = (props) => {
     }
  
     return(
-        <div>
+        <div className='formBody'>
             {alert()}
-            <form onSubmit={submitForm}>
-                <input type='text' placeholder='@gmail.com' ></input>
-                <input type='password' placeholder='Lösenord'></input>
+            <form onSubmit={submitForm} className='form'>
+                <h1>Skapa konto</h1>
+                <input type='text' placeholder='@gmail.com' className='mailInput' required></input>
+                <input type='password' placeholder='Lösenord' className='passwordInput' required></input>
                 <input type='submit' value='Skapa konto' ></input>
             </form>
         </div>

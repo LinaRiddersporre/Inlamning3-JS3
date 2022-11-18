@@ -36,10 +36,10 @@ const AddMovie = () => {
 
     const submitForm = (e) => {
         e.preventDefault();
-        const movieTitle = e.target.children[0].value;
-        const shortMovieDescription = e.target.children[1].value;
-        const longMovieDescrition = e.target.children[2].value;
-        let moviePicture = e.target.children[3].value;
+        const movieTitle = e.target.children[1].value;
+        const shortMovieDescription = e.target.children[2].value;
+        const longMovieDescrition = e.target.children[3].value;
+        let moviePicture = e.target.children[4].value;
         if(moviePicture === ''){
             moviePicture = 'https://media.gettyimages.com/id/1244034031/vector/cinema-poster-with-cola-film-strip-and-clapper-vector.jpg?s=612x612&w=gi&k=20&c=8ClshQC50T-wPj6CPvnPnFq1Er6Fs8fbrreXWehvdgk='
         }
@@ -55,7 +55,8 @@ const AddMovie = () => {
 
     return(
         <div>
-            <form onSubmit={submitForm}>
+            <form onSubmit={submitForm} className='form'>
+                <h1>Lägg till en film</h1>
                 <input type='text' placeholder='Filmtitel' required></input>
                 <input type='text' placeholder='Kort beskrivning' required></input>
                 <input type='text' placeholder='Lång beskrivning' required></input>

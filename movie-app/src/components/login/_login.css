@@ -1,0 +1,27 @@
+.formBody{
+    min-height: 60vh;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.mailInput{
+    height: 2rem;
+    width: 20rem;
+    border: solid black 2px;
+    font-size: larger;
+    padding-left: 1rem;    
+}
+
+.passwordInput{
+    margin: 1rem 0;
+    height: 2rem;
+    width: 15rem;
+    border: solid black 2px;
+    font-size: larger;
+    padding-left: 1rem; 
+}

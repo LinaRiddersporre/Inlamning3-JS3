@@ -6,6 +6,7 @@ import BasicModal from "../modal/modal";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Movies from "../movies/movies";
 import { Switch } from "@mui/material";
+import './_login.css'
 
 class Login extends React.Component{
     constructor(props){
@@ -16,9 +17,9 @@ class Login extends React.Component{
 
     submitForm = (e) =>{
         e.preventDefault()
-        const userName = e.target.children[0].value
-        const password = e.target.children[1].value
-        console.log(userName, password)
+        const userName = e.target.children[1].value
+        const password = e.target.children[2].value
+        console.log(e.target.children, password)
         this.loginCheck(userName, password)
     }
 
@@ -77,11 +78,12 @@ class Login extends React.Component{
             firebase.initializeApp(configuration());
         }
         return(
-            <div>
+            <div className="formBody">
                 {this.alert()}
-                <form onSubmit={this.submitForm}>
-                    <input type='text' placeholder='@gmail.com'></input>
-                    <input type='password' placeholder='Lösenord'></input>
+                <form onSubmit={this.submitForm} className='form'>
+                    <h1>Logga in</h1>
+                    <input type='text' placeholder='@gmail.com' className="mailInput" required></input>
+                    <input type='password' placeholder='Lösenord' className="passwordInput" required></input>
                     <input type='submit' value='Logga in'></input>
                 </form>
             </div>
