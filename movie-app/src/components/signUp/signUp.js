@@ -64,7 +64,7 @@ const SignUp = (props) => {
             {alert()}
             <form onSubmit={submitForm} className='form'>
                 <h1>Skapa konto</h1>
-                <input type='email' placeholder='@example.com' className='mailInput' required></input>
+                <input type='email' placeholder='test@example.com' className='mailInput' required></input>
                 <input type='password' placeholder='Lösenord' className='passwordInput' required></input>
                 <input type='submit' value='Skapa konto'></input>
             </form>

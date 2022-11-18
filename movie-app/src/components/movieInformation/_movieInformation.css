@@ -9,6 +9,10 @@
     border: solid black 1px;
 }
 
+.innerDiv{
+    max-width: 40rem;
+}
+
 .movieInformation h2{
     font-size: 250%;
 }

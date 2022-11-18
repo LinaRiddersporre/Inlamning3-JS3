@@ -45,7 +45,7 @@ const AddMovie = (props) => {
         const creator = storage
         console.log(moviePicture)
         addMovie(movieTitle, shortMovieDescription, longMovieDescrition, moviePicture, creator);
-        setMessage('Filmen är skapad')
+        setMessage('Filmen har skapats')
         setOpenModal(true)
     }
 
@@ -76,7 +76,7 @@ const AddMovie = (props) => {
                 <input type='text' placeholder='Filmtitel' className='movieTitleInput' required></input>
                 <textarea cols={'30'} rows='8' placeholder='Kort beskrivning' className='discriptionInput' required></textarea>
                 <textarea cols={'40'} rows='15' placeholder='Lång beskrivning' className='discriptionInput' required></textarea>
-                <input type='text' placeholder='Alternativ url till bild' className='urlInput'></input>
+                <input type='text' placeholder='URL till valfri bild' className='urlInput'></input>
                 <input type='submit' value='Lägg till film' required></input>
             </form>
         </div>

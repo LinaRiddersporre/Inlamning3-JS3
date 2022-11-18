@@ -70,7 +70,7 @@ class Login extends React.Component{
                 {this.alert()}
                 <form onSubmit={this.submitForm} className='form'>
                     <h1>Logga in</h1>
-                    <input type='email' placeholder='@gmail.com' className="mailInput" required></input>
+                    <input type='email' placeholder='test@example.com' className="mailInput" required></input>
                     <input type='password' placeholder='Lösenord' className="passwordInput" required></input>
                     <input type='submit' value='Logga in'></input>
                 </form>

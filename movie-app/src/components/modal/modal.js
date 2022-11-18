@@ -37,8 +37,6 @@ function BasicModal(props) {
               ><br/>Gå till filmlistan</NavLink> :
               <div>
                 <br/>
-                <NavLink to={`/login`}>Logga in</NavLink>
-                <br/>
                 <NavLink to={`/signUp`}>Skapa nytt konto</NavLink>
               </div>
               }
