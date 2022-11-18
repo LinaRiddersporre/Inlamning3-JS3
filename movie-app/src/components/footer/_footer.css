@@ -3,6 +3,7 @@ html,body {
  }
 
 .footer{
+    margin-top: 2rem;
     height: 5rem;
     background-color: #203c74;
     left: 0;

@@ -1,0 +1,21 @@
+.movieTitleInput{
+    height: 1.3rem;
+    width: 20rem;
+    font-size: larger;
+    padding-left: 0.5rem;  
+    margin-bottom: 1rem;
+}
+
+.discriptionInput{
+    width: 20rem;
+    font-size: larger;
+    padding-left: 0.5rem;  
+    margin-bottom: 1rem;
+}
+
+.urlInput{
+    height: 1.3rem;
+    width: 20rem;
+    padding-left: 0.5rem;  
+    margin-bottom: 1rem;
+}

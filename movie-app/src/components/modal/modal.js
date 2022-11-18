@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import './_modal.css'
 import { NavLink } from 'react-router-dom';
 
 const style = {
@@ -33,7 +32,7 @@ function BasicModal(props) {
           <Box sx={style}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
                   {props.errorMessage}
-                  {(props.errorMessage === 'Inloggad') ? <NavLink to={`/movies`}
+                  {(props.errorMessage === 'Inloggad' || props.errorMessage === 'Filmen är skapad') ? <NavLink to={`/movies`}
                   state={{weAreIn: 'weAreIn'}}
                   ><br/>Gå till filmlistan</NavLink> :
                   <div>

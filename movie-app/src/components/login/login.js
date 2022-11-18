@@ -3,9 +3,6 @@ import firebase from 'firebase/app';
 import 'firebase/database'
 import configuration from "../firebase/firebaseconfig";
 import BasicModal from "../modal/modal";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import Movies from "../movies/movies";
-import { Switch } from "@mui/material";
 import './_login.css'
 
 class Login extends React.Component{
