@@ -23,7 +23,7 @@ const Layout = () => {
             <nav>
                 {(storageId) ? 
                 <div className="navbarBody"> 
-                    <h1>Hej {storageId}</h1> 
+                    <h1>Välkommen {storageId}</h1> 
                     <li><NavLink to={'movies'}>Filmlistan</NavLink></li>
                     <li><NavLink 
                     to={'addMovie'}

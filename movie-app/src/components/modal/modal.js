@@ -32,11 +32,14 @@ function BasicModal(props) {
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
               {props.errorMessage}
-              {(props.errorMessage === 'Inloggad' || props.errorMessage === 'Filmen är skapad') ? <NavLink to={`/movies`}
+              {(props.errorMessage === 'Inloggad' || props.errorMessage === 'Filmen har skapats') ? 
+              <NavLink to={`/movies`}
               state={{weAreIn: 'weAreIn'}}
-              ><br/>Gå till filmlistan</NavLink> :
+              ><br/>Gå till filmlistan</NavLink> : (props.errorMessage === 'Kontot är skapat') ? 
               <div>
-                <br/>
+                <NavLink to={`/login`}>Logga in</NavLink>
+              </div> :
+              <div>
                 <NavLink to={`/signUp`}>Skapa nytt konto</NavLink>
               </div>
               }
