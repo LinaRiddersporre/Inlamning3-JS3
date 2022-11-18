@@ -21,31 +21,23 @@ class Login extends React.Component{
     }
 
     loginCheck = (userName, password) => {
-        firebase.database().ref().child('users').child(userName).get().then((snapshot) => {
-            if (snapshot.exists()) {
-                firebase.database().ref().child('users').child(userName).on('value', (snapshot)=>{
-                    const data = snapshot.val()
-                    console.log(data.password)
-                    if(password === data.password){
+        firebase.database().ref().child('users').orderByChild('userName').equalTo(userName).once('value', snapshot => {
+            if(!snapshot.exists()){
+                console.log("finns inte/ fel lösen");
+                this.setState({errorMessage: 'Finns inte'})
+                this.setState({openModal: true})
+            }else{
+                firebase.database().ref().child('users').orderByChild('password').equalTo(password).once('value', snapshot => {
+                    if(!snapshot.exists()){
+                        this.setState({errorMessage: 'Fel lösenord'})
+                        this.setState({openModal: true})
+                    }else{
                         this.setState({errorMessage: 'Inloggad'})
                         this.setState({openModal: true})
                         localStorage.setItem('id', `${userName}`)
-                        
-                        console.log('inloggad')
-                    }else{
-                        this.setState({errorMessage: 'Fel lösenord'})
-                        this.setState({openModal: true})
-                        console.log(this.state.errorMessage)
                     }
                 })
-            } else { 
-                this.setState({errorMessage: 'Användaren finns inte'})
-                this.setState({openModal: true})
-                console.log(this.state.errorMessage)
-
             }
-        }).catch((error) => {
-              console.error(error);
         })
     }
 
@@ -79,7 +71,7 @@ class Login extends React.Component{
                 {this.alert()}
                 <form onSubmit={this.submitForm} className='form'>
                     <h1>Logga in</h1>
-                    <input type='text' placeholder='@gmail.com' className="mailInput" required></input>
+                    <input type='email' placeholder='@gmail.com' className="mailInput" required></input>
                     <input type='password' placeholder='Lösenord' className="passwordInput" required></input>
                     <input type='submit' value='Logga in'></input>
                 </form>

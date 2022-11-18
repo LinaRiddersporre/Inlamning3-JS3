@@ -3,7 +3,6 @@ html,body {
  }
 
 .footer{
-    margin-top: 2rem;
     height: 5rem;
     background-color: #203c74;
     left: 0;
@@ -12,8 +11,3 @@ html,body {
     color: white;
     text-align: center;
 }
-
-
-/* position: fixed;
-left: 0;
-bottom: 0; */

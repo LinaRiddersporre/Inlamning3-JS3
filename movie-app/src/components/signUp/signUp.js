@@ -16,20 +16,17 @@ const SignUp = (props) => {
     const databaseRef = firebase.database().ref()
 
     const exist = (userName, password) => {
-        databaseRef.child('users').child(userName).get().then((snapshot) => {
-            if (snapshot.exists()) {
+        databaseRef.child('users').orderByChild('userName').equalTo(userName).once('value', snapshot => {
+            if(!snapshot.exists()){
+                console.log("Ny inloggning skapad");
+                setMessage('Kontot är skapat')
+                setOpenModal(true)
+                saveData(userName, password)  
+            }else{
                 setMessage('Finns redan')
                 setOpenModal(true)
-              console.log('Finns redan');
-            } else {
-              saveData(userName, password)  
-              console.log("Ny inloggning skapad");
-              setMessage('Kontot är skapat')
-              setOpenModal(true)
             }
-          }).catch((error) => {
-            console.error(error);
-          });
+        })
     }
     
     const submitForm = (e) => {
@@ -59,7 +56,7 @@ const SignUp = (props) => {
     }
     
     function saveData(userName, password){
-        database.ref('users/' + userName).set({
+        database.ref('users/').push({
             userName : userName,
             password : password
         })
@@ -70,7 +67,7 @@ const SignUp = (props) => {
             {alert()}
             <form onSubmit={submitForm} className='form'>
                 <h1>Skapa konto</h1>
-                <input type='text' placeholder='@gmail.com' className='mailInput' required></input>
+                <input type='email' placeholder='@example.com' className='mailInput' required></input>
                 <input type='password' placeholder='Lösenord' className='passwordInput' required></input>
                 <input type='submit' value='Skapa konto' ></input>
             </form>
